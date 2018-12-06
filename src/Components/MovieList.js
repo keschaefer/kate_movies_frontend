@@ -8,8 +8,13 @@ const MovieList = (props) => {
                 <div className="row">
                      <div className="col-md-4">{movie.title}</div>
                      <div className="col-md-4">{movie.director}</div>
-                     <div className="col-md-2">{movie.release_year}</div>
-                     <div className="col-md-2">{movie.rating}</div>
+                     <div className="col-md-1">{movie.release_year}</div>
+                     <div className="col-md-1">{movie.rating}</div>
+                     <div> <button className="col-md-1">Delete</button>
+                     </div>
+                     <div>
+                        <button className="col-md-1">Edit</button>
+                     </div>
                  </div>
             </div>
          )

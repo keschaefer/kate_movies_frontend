@@ -1,13 +1,21 @@
+.App {
+  margin-right: 10%;
+  margin-left: 10%;
+  font-family: 'Raleway', sans-serif;
+}
+
 .header {
   color: white;
   background-color: #666666;
+  font-size: 2em;
 }
 
 .footer {
   color: white;
   background-color: #666666;
+  font-size: 1em;
 }
 
-.main-home {
-  height: 90%;
+.main-home img {
+  width: 100%
 }
