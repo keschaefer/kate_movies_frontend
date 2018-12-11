@@ -15,7 +15,8 @@ class App extends Component {
         newMovie_title: "",
         newMovie_director: "",
         newMovie_release_year: "",
-        newMovie_rating: ""
+        newMovie_rating: 0,
+        newMovie_poster_URL: ""
       }
   }
 
@@ -27,6 +28,7 @@ async componentDidMount() {
         movies_list: response
       })
     })
+    .then(() => console.log(this.state.movies_list))
   }
 
 handleChange = (event) => {
@@ -34,6 +36,32 @@ handleChange = (event) => {
   this.setState({
     [name]: value
   })
+}
+
+submitNewMovie = (event) => {
+  event.preventDefault()
+  let newMovie = {
+    title: this.state.newMovie_title,
+    director: this.state.newMovie_director,
+    release_year: this.state.newMovie_release_year,
+    rating: this.state.newMovie_rating,
+    poster_url: this.state.newMovie_poster_URL,
+  }
+  fetch("http://localhost:3002", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    body: JSON.stringify(newMovie)
+  })
+  .then(response => response.json())
+  // .then(response => console.log(response[0]))
+  .then(response => {
+    this.setState({
+      movies_list: [...this.state.movies_list, response[0]]
+    })
+  })
+  .then(() => console.log(this.state.movies_list))
 }
   
   render() {
@@ -46,7 +74,7 @@ handleChange = (event) => {
             <MovieList movies= {this.state.movies_list} />
             {/* <Route exact path= '/' component= {(props) => <Main/>} /> /> */}
             {/* <Route path= '/movies' component={MovieList} /> */}
-            <New_Movie handleChange= {this.handleChange}/>
+            <New_Movie handleChange= {this.handleChange} submitNewMovie= {this.submitNewMovie}/>
             <Footer />
           </div>
         </div>

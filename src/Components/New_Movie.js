@@ -13,7 +13,11 @@ const New_Movie = (props) => {
          </div>
          <div className= "form-group">
             <label>Release Year</label>
-            <input name= "newMovie_release_year" onChange= {props.handleChange} type= "text" className= "form-control" placeholder= "Enter Movie Release Year"></input>
+            <input name= "newMovie_release_year" onChange= {props.handleChange} type= "number" className= "form-control" placeholder= "Enter Movie Release Year"></input>
+         </div>
+         <div className= "form-group">
+            <label>Poster URL</label>
+            <input name= "newMovie_poster_URL" onChange= {props.handleChange} type= "text" className= "form-control" placeholder= "Enter Movie Release Year"></input>
          </div>
          <div className= "form-group">
             <label>Rate This Movie</label>
@@ -25,7 +29,7 @@ const New_Movie = (props) => {
                <option>5</option>
             </select>
          </div>
-         <button type= "submit" className= "btn btn-primary">Submit</button>
+         <button onClick= {props.submitNewMovie} type= "submit" className= "btn btn-primary">Submit</button>
       </form>
    )
 }
