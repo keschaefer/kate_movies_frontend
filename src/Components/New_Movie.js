@@ -5,19 +5,19 @@ const New_Movie = (props) => {
       <form className= "form-container">
          <div className= "form-group">
             <label>Movie Title</label>
-            <input type= "text" className= "form-control" placeholder= "Enter Movie Title"></input>
+            <input name= "newMovie_title" onChange= {props.handleChange} type= "text" className= "form-control" placeholder= "Enter Movie Title"></input>
          </div>
          <div className= "form-group">
             <label>Movie Director</label>
-            <input type= "text" className= "form-control" placeholder= "Enter Movie Director"></input>
+            <input name= "newMovie_director" onChange= {props.handleChange} type= "text" className= "form-control" placeholder= "Enter Movie Director"></input>
          </div>
          <div className= "form-group">
             <label>Release Year</label>
-            <input type= "text" className= "form-control" placeholder= "Enter Movie Release Year"></input>
+            <input name= "newMovie_release_year" onChange= {props.handleChange} type= "text" className= "form-control" placeholder= "Enter Movie Release Year"></input>
          </div>
          <div className= "form-group">
             <label>Rate This Movie</label>
-            <select className= "form-control">
+            <select name= "newMovie_rating" onChange= {props.handleChange} className= "form-control">
                <option>1</option>
                <option>2</option>
                <option>3</option>

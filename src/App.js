@@ -12,6 +12,10 @@ class App extends Component {
     super()
       this.state = {
         movies_list: [],
+        newMovie_title: "",
+        newMovie_director: "",
+        newMovie_release_year: "",
+        newMovie_rating: ""
       }
   }
 
@@ -25,6 +29,12 @@ async componentDidMount() {
     })
   }
 
+handleChange = (event) => {
+  const { value, name } = event.target
+  this.setState({
+    [name]: value
+  })
+}
   
   render() {
     return (
@@ -36,7 +46,7 @@ async componentDidMount() {
             <MovieList movies= {this.state.movies_list} />
             {/* <Route exact path= '/' component= {(props) => <Main/>} /> /> */}
             {/* <Route path= '/movies' component={MovieList} /> */}
-            <New_Movie />
+            <New_Movie handleChange= {this.handleChange}/>
             <Footer />
           </div>
         </div>
