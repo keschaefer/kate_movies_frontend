@@ -4,9 +4,9 @@ import Header from './Components/Header.js';
 import Main from './Components/Main.js'
 import Footer from './Components/Footer.js'
 import MovieListContainer from './Components/MovieListContainer.js'
-import New_Movie from './Components/New_Movie.js'
-import Edit_Movie from './Components/Edit_Movie.js'
-import View_Movie from './Components/View_Movie.js'
+import NewMovie from './Components/NewMovie.js'
+import EditMovie from './Components/EditMovie.js'
+import ViewMovie from './Components/ViewMovie.js'
 import { Route } from "react-router-dom"
 
 class App extends Component {
@@ -51,13 +51,6 @@ handleChange = (event) => {
   })
 }
 
-handleChangeEdit = (event) => {
-  const { value, name } = event.target
-  this.setState({
-    [name]: value
-  })
-}
-
 selectMovie = (event) => {
   fetch(`http://localhost:3002/${event.target.id}`)
   .then(response => response.json())
@@ -65,7 +58,7 @@ selectMovie = (event) => {
      this.setState({
        selectedMovie: response
      })
- })
+  })
 }
 
 populateEditMovie = (event) => {
@@ -117,7 +110,6 @@ editMovie = (event) => {
     rating: Number(this.state.editMovie_rating),
     poster_url: this.state.editMovie_poster_URL,
   }
-  console.log(changedMovie.id)
   fetch(`http://localhost:3002/${changedMovie.id}`, {
     method: "PUT",
     headers: {
@@ -132,43 +124,32 @@ editMovie = (event) => {
     })
   })
 }
-  deleteMovie = (event) => {
-    fetch(`http://localhost:3002/${Number(event.target.id)}`, {
-      method: "DELETE",
-    })
-    let movies = this.state.movies_list.filter(movie => {
-      console.log(movie.id, event.target.id)
-      return movie.id !== Number(event.target.id)
-    })
-    this.setState({
-      movies_list: movies
-    })
-  }
 
-  // deleteLocation = (event) => {
-  //   let locations = this.state.locations.filter(location => {
-  //     return location.id !== Number(event.target.id)
-  //   })
-  //   this.setState({
-  //     locations: locations
-  //   })
-  //   fetch(`https://evening-journey-97622.herokuapp.com/${event.target.id}`, {
-  //     method: "DELETE",
-  //   })
-  // }  
-  render() {
-    return (
-        <div className="App">
-          <div className= "body">
-            <Header />
-            <Route exact path="/" render={() => (<Main />)}/>
-            <Route path="/movies" render={() => (<MovieListContainer selectMovie= {this.selectMovie} movies= {this.state.movies_list} populateEditMovie= {this.populateEditMovie} deleteMovie= {this.deleteMovie}/>)} />
-            <Route path="/newmovie" render={() => (<New_Movie handleChange= {this.handleChange} submitNewMovie= {this.submitNewMovie}/>)} />
-            <Route path="/editmovie" render={() => (<Edit_Movie handleChange= {this.handleChange} selectedMovie= {this.state.selectedMovie} editMovie= {this.editMovie}/>)} />
-            <Route path="/viewmovie" render={() => (<View_Movie selectedMovie= {this.state.selectedMovie}/>)} />
-            <Footer />
-          </div>
+deleteMovie = (event) => {
+  fetch(`http://localhost:3002/${Number(event.target.id)}`, {
+    method: "DELETE",
+  })
+  let movies = this.state.movies_list.filter(movie => {
+    return movie.id !== Number(event.target.id)
+  })
+  this.setState({
+    movies_list: movies
+  })
+}
+
+render() {
+  return (
+      <div className= "App">
+        <div className= "body">
+          <Header />
+          <Route exact path= "/" render= {() => (<Main />)} />
+          <Route path= "/movies" render= {() => (<MovieListContainer selectMovie= {this.selectMovie} movies= {this.state.movies_list} populateEditMovie= {this.populateEditMovie} deleteMovie= {this.deleteMovie}/>)} />
+          <Route path= "/newmovie" render= {() => (<NewMovie handleChange= {this.handleChange} submitNewMovie= {this.submitNewMovie}/>)} />
+          <Route path= "/editmovie" render= {() => (<EditMovie handleChange= {this.handleChange} selectedMovie= {this.state.selectedMovie} editMovie= {this.editMovie}/>)} />
+          <Route path= "/viewmovie" render= {() => (<ViewMovie selectedMovie= {this.state.selectedMovie}/>)} />
+          <Footer />
         </div>
+      </div>
     )
   }
 }

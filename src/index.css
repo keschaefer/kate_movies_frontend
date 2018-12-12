@@ -14,17 +14,6 @@
   z-index: 99999;
   top: 0px;
 }
-.footer {
-  color: white;
-  background-color: #666666;
-  font-size: 1em;
-  text-align: right;
-  padding: .5em;
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-}
 .movies-btn:hover {
   transform: scale(1.1);
   color: white;
@@ -34,6 +23,15 @@
 }
 .main-home img {
   width: 100%
+}
+.movie-list-container {
+  margin: 2em;
+}
+.add-movie-btn {
+  margin-bottom: 2em;
+}
+.movie-list {
+  margin-top: .5em;
 }
 .card-container {
   display: flex;
@@ -58,23 +56,24 @@
   align-items: center;
   margin: 2em;
 }
-.edit-form-container {
-  width: 30em;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  padding: 1em;
-}
-.movie-list-container {
-  margin: 2em;
-}
-.add-movie-btn {
-  margin-bottom: 2em;
-}
-.movie-list {
-  margin-top: .5em;
-}
 .form-btn {
   width: 7em;
   margin-left: .5em;
   margin-right: .5em;
 }
-
+.edit-form-container {
+  width: 30em;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 1em;
+}
+.footer {
+  color: white;
+  background-color: #666666;
+  font-size: 1em;
+  text-align: right;
+  padding: .5em;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}

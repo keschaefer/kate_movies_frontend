@@ -1,15 +1,14 @@
 import React from "react"
-import { Link } from "react-router-dom"
 
-const Edit_Movie = (props) => {
+const EditMovie = (props) => {
    return props.selectedMovie.map(movie => {
       return (
-      <div className= "form-container">
-         <h2>Edit Your Movie</h2> 
-         <form className= "edit-form-container">
+         <div className= "form-container" key= {movie.id}>
+            <h2>Edit Your Movie</h2> 
+            <form className= "edit-form-container">
                <div className= "form-group">
                   <label>Movie Title</label>
-                  <input name= "editMovie_title" onChange= {props.handleChange} type= "text" className= "form-control" defaultValue={movie.title}></input>
+                  <input name= "editMovie_title" onChange= {props.handleChange} type= "text" className= "form-control" defaultValue= {movie.title}></input>
                </div>
                <div className= "form-group">
                   <label>Movie Director</label>
@@ -33,14 +32,12 @@ const Edit_Movie = (props) => {
                      <option>5</option>
                   </select>
                </div>
-               {/* <Link to= "/movies"> */}
-                  <button onClick= {props.editMovie} type= "submit" className= "btn btn-primary">Submit</button>
-               {/* </Link> */}
+               <button onClick= {props.editMovie} type= "submit" className= "btn btn-primary">Submit</button>
             </form>
-      </div>
+         </div>
       )
-})
+   })
 }
 
-export default Edit_Movie
+export default EditMovie
 

@@ -5,14 +5,14 @@ const MovieList = (props) => {
    if (props.movies.length > 0) {
       return props.movies.map(movie => {
          return (
-            <div className= "movie-list">
-               <div className="list-group-item" id= {movie.id} key ={movie.id}>
-                  <div className="row">
-                     <div className="col-md-3">{movie.title}</div>
-                     <div className="col-md-3">{movie.director}</div>
-                     <div className="col-md-1">{movie.release_year}</div>
-                     <div className="col-md-1">{movie.rating}</div>
-                     <button onClick= {props.deleteMovie} className="form-btn col-md-1 btn btn-primary" id= {movie.id}>Delete</button>
+            <div className= "movie-list" key= {movie.id}>
+               <div className= "list-group-item" id= {movie.id} >
+                  <div className= "row">
+                     <div className= "col-md-3">{movie.title}</div>
+                     <div className= "col-md-3">{movie.director}</div>
+                     <div className= "col-md-1">{movie.release_year}</div>
+                     <div className= "col-md-1">{movie.rating}</div>
+                     <button onClick= {props.deleteMovie} className= "form-btn col-md-1 btn btn-primary" id= {movie.id}>Delete</button>
                      <div className= "col-md-1">
                         <Link to= "/editmovie">
                            <button onClick= {props.populateEditMovie} id= {movie.id} className= "form-btn btn btn-primary">Edit</button>
@@ -28,11 +28,11 @@ const MovieList = (props) => {
             </div>
          )
    })} else {
-   return (
-      <div>
-         <p>Waiting for movies to load...</p>
-      </div>
-   )
+      return (
+         <div>
+            <p>Waiting for movies to load...</p>
+         </div>
+      )
    }
 }
 
