@@ -1,25 +1,68 @@
 .App {
-  margin-right: 10%;
-  margin-left: 10%;
   font-family: 'Raleway', sans-serif;
 }
-
 .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   color: white;
   background-color: #666666;
   font-size: 2em;
+  padding: 1em;
+  height: 3em;
+  position: sticky;
+  z-index: 99999;
+  top: 0px;
 }
-
 .footer {
   color: white;
   background-color: #666666;
   font-size: 1em;
+  text-align: right;
+  padding: .5em;
+  position: sticky;
+  z-index: 99999;
+  bottom: 0px;
 }
-
+.btn-info {
+  margin-left: 1em;
+}
+.movies-btn:hover {
+  transform: scale(1.1);
+  color: white;
+}
+.movies-btn:visited {
+  color: white;
+}
 .main-home img {
   width: 100%
 }
-
-.card {
-  width: 18rem;
+.card-container {
+  display: flex;
+  justify-content: center;
 }
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 22em;
+  margin: 2em;
+}
+.card img {
+  height: 30em;
+}
+.card-title {
+  font-weight: bold;
+  font-size: 16px;
+}
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2em;
+}
+.edit-form-container {
+  width: 30em;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 1em;
+}
+

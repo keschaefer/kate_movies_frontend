@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom'
 const Edit_Movie = (props) => {
    // return props.editedMovie.map(movie => {
       return (
-      <div>
+      <div className= "form-container">
          <h2>Edit Your Movie</h2> 
-         <Link to= "/movies">
+         {/* <Link to= "/movies">
             <button>Back to Movies</button>
-         </Link>
+         </Link> */}
          <form className= "edit-form-container">
                <div className= "form-group">
                   <label>Movie Title</label>

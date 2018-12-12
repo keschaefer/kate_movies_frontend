@@ -1,9 +1,13 @@
-import React from 'react';
+import React from "react"
+import { Link } from "react-router-dom"
 
 const Header = () => {
    return (
-      <div className= 'header'>
-         <header>Kate's Movie Picks</header>
+      <div className= "header">
+         <span>Kate's Movie Picks</span>
+            <Link to="/movies">
+               <button className= "movies-btn btn btn-primary">Go To My Movies</button>
+            </Link>
       </div>
    )
 }

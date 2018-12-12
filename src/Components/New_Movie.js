@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom'
 
 const New_Movie = (props) => {
    return (
-      <div>
-          <Link to= "/movies">
+      <div className= "form-container">
+         <h2>Add a New Movie</h2>
+          {/* <Link to= "/movies">
             <button>Back to Movies</button>
-         </Link>
-      <form className= "form-container">
+         </Link> */}
+      <form className= "edit-form-container">
          <div className= "form-group">
             <label>Movie Title</label>
             <input name= "newMovie_title" onChange= {props.handleChange} type= "text" className= "form-control" placeholder= "Enter Movie Title"></input>
