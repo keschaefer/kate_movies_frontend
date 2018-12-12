@@ -6,6 +6,7 @@ import Footer from './Components/Footer.js'
 import MovieList from './Components/MovieList.js'
 import New_Movie from './Components/New_Movie.js'
 import Edit_Movie from './Components/Edit_Movie.js'
+import View_Movie from './Components/View_Movie.js'
 import { Route } from "react-router-dom"
 
 class App extends Component {
@@ -23,7 +24,8 @@ class App extends Component {
         editMovie_release_year: "",
         editMovie_rating: 0,
         editMovie_poster_URL: "",
-        editedMovie: []
+        editedMovie: [],
+        selectedMovie: []
       }
   }
 
@@ -61,6 +63,17 @@ editMovie = (event) => {
   })
 }
 
+selectMovie = (event) => {
+  fetch(`http://localhost:3002/${event.target.id}`)
+  .then(response => response.json())
+  .then(response => {
+     this.setState({
+       selectedMovie: response
+     })
+ })
+ .then(() => console.log(this.state.selectedMovie))
+}
+
 submitNewMovie = (event) => {
   event.preventDefault()
   let newMovie = {
@@ -91,9 +104,10 @@ submitNewMovie = (event) => {
           <div className= "body">
             <Header />
             <Route exact path="/" render={() => (<Main />)}/>
-            <Route path="/movies" render={() => (<MovieList movies= {this.state.movies_list} editMovie= {this.editMovie} />)} />
+            <Route path="/movies" render={() => (<MovieList selectMovie= {this.selectMovie} movies= {this.state.movies_list} editMovie= {this.editMovie} />)} />
             <New_Movie handleChange= {this.handleChange} submitNewMovie= {this.submitNewMovie}/>
             <Edit_Movie editedMovie= {this.state.editedMovie} />
+            <View_Movie selectedMovie= {this.state.selectedMovie} />
             <Footer />
           </div>
         </div>

@@ -6,15 +6,13 @@ const MovieList = (props) => {
          return (
             <div className="list-group-item" id= {movie.id} key ={movie.id}>
                 <div className="row">
-                     <div className="col-md-4">{movie.title}</div>
-                     <div className="col-md-4">{movie.director}</div>
-                     <div className="col-md-1">{movie.release_year}</div>
+                     <div className="col-md-3">{movie.title}</div>
+                     <div className="col-md-3">{movie.director}</div>
+                     <div className="col-md-2">{movie.release_year}</div>
                      <div className="col-md-1">{movie.rating}</div>
-                     <div> <button className="col-md-1">Delete</button>
-                     </div>
-                     <div>
-                        <button onClick= {props.editMovie} id= {movie.id} className="col-md-1">Edit</button>
-                     </div>
+                     <button className="col-md-1">Delete</button>
+                     <button onClick= {props.editMovie} id= {movie.id} className="col-md-1">Edit</button>
+                     <button onClick= {props.selectMovie} id= {movie.id} className="col-md-1">View</button>
                  </div>
             </div>
          )

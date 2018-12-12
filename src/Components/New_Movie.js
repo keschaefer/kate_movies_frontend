@@ -2,6 +2,8 @@ import React from "react"
 
 const New_Movie = (props) => {
    return (
+      <div>
+          <button>Back to Movies</button>
       <form className= "form-container">
          <div className= "form-group">
             <label>Movie Title</label>
@@ -31,6 +33,7 @@ const New_Movie = (props) => {
          </div>
          <button onClick= {props.submitNewMovie} type= "submit" className= "btn btn-primary">Submit</button>
       </form>
+      </div>
    )
 }
 

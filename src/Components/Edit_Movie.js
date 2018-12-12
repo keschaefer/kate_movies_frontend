@@ -4,7 +4,8 @@ const Edit_Movie = (props) => {
    // return props.editedMovie.map(movie => {
       return (
       <div>
-         <h2>Edit Your Movie</h2>
+         <h2>Edit Your Movie</h2> 
+         <button>Back to Movies</button>
          <form className= "edit-form-container">
                <div className= "form-group">
                   <label>Movie Title</label>
