@@ -20,12 +20,10 @@
   font-size: 1em;
   text-align: right;
   padding: .5em;
-  position: sticky;
-  z-index: 99999;
-  bottom: 0px;
-}
-.btn-info {
-  margin-left: 1em;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
 }
 .movies-btn:hover {
   transform: scale(1.1);
@@ -64,5 +62,19 @@
   width: 30em;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   padding: 1em;
+}
+.movie-list-container {
+  margin: 2em;
+}
+.add-movie-btn {
+  margin-bottom: 2em;
+}
+.movie-list {
+  margin-top: .5em;
+}
+.form-btn {
+  width: 7em;
+  margin-left: .5em;
+  margin-right: .5em;
 }
 

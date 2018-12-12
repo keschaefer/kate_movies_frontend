@@ -5,9 +5,6 @@ const New_Movie = (props) => {
    return (
       <div className= "form-container">
          <h2>Add a New Movie</h2>
-          {/* <Link to= "/movies">
-            <button>Back to Movies</button>
-         </Link> */}
       <form className= "edit-form-container">
          <div className= "form-group">
             <label>Movie Title</label>
@@ -35,7 +32,9 @@ const New_Movie = (props) => {
                <option>5</option>
             </select>
          </div>
-         <button onClick= {props.submitNewMovie} type= "submit" className= "btn btn-primary">Submit</button>
+         <Link to= "/movies">
+            <button onClick= {props.submitNewMovie} type= "submit" className= "btn btn-primary">Submit</button>
+         </Link>
       </form>
       </div>
    )

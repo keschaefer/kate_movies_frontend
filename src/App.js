@@ -3,7 +3,7 @@ import './index.css';
 import Header from './Components/Header.js';
 import Main from './Components/Main.js'
 import Footer from './Components/Footer.js'
-import MovieList from './Components/MovieList.js'
+import MovieListContainer from './Components/MovieListContainer.js'
 import New_Movie from './Components/New_Movie.js'
 import Edit_Movie from './Components/Edit_Movie.js'
 import View_Movie from './Components/View_Movie.js'
@@ -74,7 +74,6 @@ selectMovie = (event) => {
 }
 
 submitNewMovie = (event) => {
-  event.preventDefault()
   let newMovie = {
     title: this.state.newMovie_title,
     director: this.state.newMovie_director,
@@ -103,7 +102,7 @@ submitNewMovie = (event) => {
           <div className= "body">
             <Header />
             <Route exact path="/" render={() => (<Main />)}/>
-            <Route path="/movies" render={() => (<MovieList selectMovie= {this.selectMovie} movies= {this.state.movies_list} editMovie= {this.editMovie} />)} />
+            <Route path="/movies" render={() => (<MovieListContainer selectMovie= {this.selectMovie} movies= {this.state.movies_list} editMovie= {this.editMovie} />)} />
             <Route path="/newmovie" render={() => (<New_Movie handleChange= {this.handleChange} submitNewMovie= {this.submitNewMovie}/>)} />
             <Route path="/editmovie" render={() => (<Edit_Movie editedMovie= {this.state.editedMovie} />)} />
             <Route path="/viewmovie" render={() => (<View_Movie selectedMovie= {this.state.selectedMovie}/>)} />
