@@ -1,9 +1,12 @@
 import React from "react"
+import { Link } from 'react-router-dom'
 
 const New_Movie = (props) => {
    return (
       <div>
-          <button>Back to Movies</button>
+          <Link to= "/movies">
+            <button>Back to Movies</button>
+         </Link>
       <form className= "form-container">
          <div className= "form-group">
             <label>Movie Title</label>

@@ -71,7 +71,6 @@ selectMovie = (event) => {
        selectedMovie: response
      })
  })
- .then(() => console.log(this.state.selectedMovie))
 }
 
 submitNewMovie = (event) => {
@@ -105,9 +104,9 @@ submitNewMovie = (event) => {
             <Header />
             <Route exact path="/" render={() => (<Main />)}/>
             <Route path="/movies" render={() => (<MovieList selectMovie= {this.selectMovie} movies= {this.state.movies_list} editMovie= {this.editMovie} />)} />
-            <New_Movie handleChange= {this.handleChange} submitNewMovie= {this.submitNewMovie}/>
-            <Edit_Movie editedMovie= {this.state.editedMovie} />
-            <View_Movie selectedMovie= {this.state.selectedMovie} />
+            <Route path="/newmovie" render={() => (<New_Movie handleChange= {this.handleChange} submitNewMovie= {this.submitNewMovie}/>)} />
+            <Route path="/editmovie" render={() => (<Edit_Movie editedMovie= {this.state.editedMovie} />)} />
+            <Route path="/viewmovie" render={() => (<View_Movie selectedMovie= {this.state.selectedMovie}/>)} />
             <Footer />
           </div>
         </div>
