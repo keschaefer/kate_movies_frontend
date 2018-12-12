@@ -5,7 +5,8 @@ import Main from './Components/Main.js'
 import Footer from './Components/Footer.js'
 import MovieList from './Components/MovieList.js'
 import New_Movie from './Components/New_Movie.js'
-import { BrowserRouter as Router, Route, Link} from 'react-router-dom'
+import Edit_Movie from './Components/Edit_Movie.js'
+import { Route } from "react-router-dom"
 
 class App extends Component {
   constructor() {
@@ -16,7 +17,13 @@ class App extends Component {
         newMovie_director: "",
         newMovie_release_year: "",
         newMovie_rating: 0,
-        newMovie_poster_URL: ""
+        newMovie_poster_URL: "",
+        editMovie_title: "",
+        editMovie_director: "",
+        editMovie_release_year: "",
+        editMovie_rating: 0,
+        editMovie_poster_URL: "",
+        editedMovie: []
       }
   }
 
@@ -28,13 +35,29 @@ async componentDidMount() {
         movies_list: response
       })
     })
-    .then(() => console.log(this.state.movies_list))
   }
 
 handleChange = (event) => {
   const { value, name } = event.target
   this.setState({
     [name]: value
+  })
+}
+
+handleChangeEdit = (event) => {
+  const { value, name } = event.target
+  this.setState({
+    [name]: value
+  })
+}
+
+editMovie = (event) => {
+   fetch(`http://localhost:3002/${event.target.id}`)
+   .then(response => response.json())
+   .then(response => {
+      this.setState({
+        editedMovie: response
+      })
   })
 }
 
@@ -55,31 +78,26 @@ submitNewMovie = (event) => {
     body: JSON.stringify(newMovie)
   })
   .then(response => response.json())
-  // .then(response => console.log(response[0]))
   .then(response => {
     this.setState({
       movies_list: [...this.state.movies_list, response[0]]
     })
   })
-  .then(() => console.log(this.state.movies_list))
 }
   
   render() {
     return (
-      <Router>
         <div className="App">
           <div className= "body">
             <Header />
-            <Main />
-            <MovieList movies= {this.state.movies_list} />
-            {/* <Route exact path= '/' component= {(props) => <Main/>} /> /> */}
-            {/* <Route path= '/movies' component={MovieList} /> */}
+            <Route exact path="/" render={() => (<Main />)}/>
+            <Route path="/movies" render={() => (<MovieList movies= {this.state.movies_list} editMovie= {this.editMovie} />)} />
             <New_Movie handleChange= {this.handleChange} submitNewMovie= {this.submitNewMovie}/>
+            <Edit_Movie editedMovie= {this.state.editedMovie} />
             <Footer />
           </div>
         </div>
-      </Router>
-    );
+    )
   }
 }
 
