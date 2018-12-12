@@ -12,10 +12,10 @@ const MovieList = (props) => {
                      <div className="col-md-3">{movie.director}</div>
                      <div className="col-md-1">{movie.release_year}</div>
                      <div className="col-md-1">{movie.rating}</div>
-                     <button className="form-btn col-md-1 btn btn-primary">Delete</button>
+                     <button onClick= {props.deleteMovie} className="form-btn col-md-1 btn btn-primary" id= {movie.id}>Delete</button>
                      <div className= "col-md-1">
                         <Link to= "/editmovie">
-                           <button onClick= {props.editMovie} id= {movie.id} className= "form-btn btn btn-primary">Edit</button>
+                           <button onClick= {props.populateEditMovie} id= {movie.id} className= "form-btn btn btn-primary">Edit</button>
                         </Link>
                      </div>
                      <div className= "col-md-1">

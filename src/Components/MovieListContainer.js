@@ -8,7 +8,7 @@ const MovieListContainer = (props) => {
          <Link to= "/newmovie">
             <button className= "add-movie-btn btn btn-primary">Add New Movie</button>
          </Link>
-         <MovieList selectMovie= {props.selectMovie} movies= {props.movies} editMovie= {props.editMovie} />
+         <MovieList selectMovie= {props.selectMovie} movies= {props.movies} editMovie= {props.editMovie} populateEditMovie= {props.populateEditMovie} deleteMovie= {props.deleteMovie}/>
       </div>
    )
 }

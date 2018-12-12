@@ -19,6 +19,7 @@ class App extends Component {
         newMovie_release_year: "",
         newMovie_rating: 0,
         newMovie_poster_URL: "",
+        editMovieId: "",
         editMovie_title: "",
         editMovie_director: "",
         editMovie_release_year: "",
@@ -30,15 +31,19 @@ class App extends Component {
   }
 
 async componentDidMount() {
-    fetch('http://localhost:3002')
-    .then(response => (response.json()))
-    .then(response => {
-      this.setState({
-        movies_list: response
-      })
-    })
+   this.getRequest()
   }
 
+getRequest = () => {
+  fetch('http://localhost:3002')
+  .then(response => (response.json()))
+  .then(response => {
+    this.setState({
+      movies_list: response
+    })
+  })
+}
+  
 handleChange = (event) => {
   const { value, name } = event.target
   this.setState({
@@ -53,16 +58,6 @@ handleChangeEdit = (event) => {
   })
 }
 
-editMovie = (event) => {
-   fetch(`http://localhost:3002/${event.target.id}`)
-   .then(response => response.json())
-   .then(response => {
-      this.setState({
-        editedMovie: response
-      })
-  })
-}
-
 selectMovie = (event) => {
   fetch(`http://localhost:3002/${event.target.id}`)
   .then(response => response.json())
@@ -71,6 +66,22 @@ selectMovie = (event) => {
        selectedMovie: response
      })
  })
+}
+
+populateEditMovie = (event) => {
+  fetch(`http://localhost:3002/${event.target.id}`)
+  .then(response => response.json())
+  .then(response => {
+     this.setState({
+        selectedMovie: response,
+        editMovieId: response[0].id,
+        editMovie_title: response[0].title,
+        editMovie_director: response[0].director,
+        editMovie_release_year: response[0].release_year,
+        editMovie_rating: response[0].rating,
+        editMovie_poster_URL: response[0].poster_url,
+      })
+  })
 }
 
 submitNewMovie = (event) => {
@@ -95,16 +106,65 @@ submitNewMovie = (event) => {
     })
   })
 }
-  
+
+editMovie = (event) => {
+  event.preventDefault()
+  let changedMovie = {
+    id: Number(this.state.editMovieId),
+    title: this.state.editMovie_title,
+    director: this.state.editMovie_director,
+    release_year: this.state.editMovie_release_year,
+    rating: Number(this.state.editMovie_rating),
+    poster_url: this.state.editMovie_poster_URL,
+  }
+  console.log(changedMovie.id)
+  fetch(`http://localhost:3002/${changedMovie.id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    body: JSON.stringify(changedMovie)
+  })
+  .then(() => this.getRequest())
+  .then(movies => {
+    this.setState({
+      movies_list: movies
+    })
+  })
+}
+  deleteMovie = (event) => {
+    fetch(`http://localhost:3002/${Number(event.target.id)}`, {
+      method: "DELETE",
+    })
+    let movies = this.state.movies_list.filter(movie => {
+      console.log(movie.id, event.target.id)
+      return movie.id !== Number(event.target.id)
+    })
+    this.setState({
+      movies_list: movies
+    })
+  }
+
+  // deleteLocation = (event) => {
+  //   let locations = this.state.locations.filter(location => {
+  //     return location.id !== Number(event.target.id)
+  //   })
+  //   this.setState({
+  //     locations: locations
+  //   })
+  //   fetch(`https://evening-journey-97622.herokuapp.com/${event.target.id}`, {
+  //     method: "DELETE",
+  //   })
+  // }  
   render() {
     return (
         <div className="App">
           <div className= "body">
             <Header />
             <Route exact path="/" render={() => (<Main />)}/>
-            <Route path="/movies" render={() => (<MovieListContainer selectMovie= {this.selectMovie} movies= {this.state.movies_list} editMovie= {this.editMovie} />)} />
+            <Route path="/movies" render={() => (<MovieListContainer selectMovie= {this.selectMovie} movies= {this.state.movies_list} populateEditMovie= {this.populateEditMovie} deleteMovie= {this.deleteMovie}/>)} />
             <Route path="/newmovie" render={() => (<New_Movie handleChange= {this.handleChange} submitNewMovie= {this.submitNewMovie}/>)} />
-            <Route path="/editmovie" render={() => (<Edit_Movie editedMovie= {this.state.editedMovie} />)} />
+            <Route path="/editmovie" render={() => (<Edit_Movie handleChange= {this.handleChange} selectedMovie= {this.state.selectedMovie} editMovie= {this.editMovie}/>)} />
             <Route path="/viewmovie" render={() => (<View_Movie selectedMovie= {this.state.selectedMovie}/>)} />
             <Footer />
           </div>

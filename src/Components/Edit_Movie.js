@@ -1,34 +1,31 @@
 import React from "react"
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom"
 
 const Edit_Movie = (props) => {
-   // return props.editedMovie.map(movie => {
+   return props.selectedMovie.map(movie => {
       return (
       <div className= "form-container">
          <h2>Edit Your Movie</h2> 
-         {/* <Link to= "/movies">
-            <button>Back to Movies</button>
-         </Link> */}
          <form className= "edit-form-container">
                <div className= "form-group">
                   <label>Movie Title</label>
-                  <input name= "newMovie_title" onChange= {props.handleChangeEdit} type= "text" className= "form-control" placeholder= "Enter Movie Title"></input>
+                  <input name= "editMovie_title" onChange= {props.handleChange} type= "text" className= "form-control" defaultValue={movie.title}></input>
                </div>
                <div className= "form-group">
                   <label>Movie Director</label>
-                  <input name= "newMovie_director" onChange= {props.handleChangeEdit} type= "text" className= "form-control" placeholder= "Enter Movie Director"></input>
+                  <input name= "editMovie_director" onChange= {props.handleChange} type= "text" className= "form-control" defaultValue= {movie.director}></input>
                </div>
                <div className= "form-group">
                   <label>Release Year</label>
-                  <input name= "newMovie_release_year" onChange= {props.handleChangeEdit} type= "number" className= "form-control" placeholder= "Enter Movie Release Year"></input>
+                  <input name= "editMovie_release_year" onChange= {props.handleChange} type= "number" className= "form-control" defaultValue= {movie.release_year}></input>
                </div>
                <div className= "form-group">
                   <label>Poster URL</label>
-                  <input name= "newMovie_poster_URL" onChange= {props.handleChangeEdit} type= "text" className= "form-control" placeholder= "Enter Movie Release Year"></input>
+                  <input name= "editMovie_poster_URL" onChange= {props.handleChange} type= "text" className= "form-control" defaultValue= {movie.poster_url}></input>
                </div>
                <div className= "form-group">
                   <label>Rate This Movie</label>
-                  <select name= "newMovie_rating" onChange= {props.handleChangeEdit} className= "form-control">
+                  <select name= "editMovie_rating" onChange= {props.handleChange} className= "form-control" defaultValue= {movie.rating}>
                      <option>1</option>
                      <option>2</option>
                      <option>3</option>
@@ -36,10 +33,13 @@ const Edit_Movie = (props) => {
                      <option>5</option>
                   </select>
                </div>
-               <button onClick= {props.submitNewMovie} type= "submit" className= "btn btn-primary">Submit</button>
+               {/* <Link to= "/movies"> */}
+                  <button onClick= {props.editMovie} type= "submit" className= "btn btn-primary">Submit</button>
+               {/* </Link> */}
             </form>
       </div>
       )
+})
 }
 
 export default Edit_Movie
