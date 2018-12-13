@@ -1,6 +1,6 @@
-# Kate's Movies
+# Kate's OMDB Movies App
 
-Check out some of Kate's favorite movies, add new movies, view full movie details, and even edit existing entries.   
+Check out some of Kate's favorite oddball comedies, add new movies, view full movie details, and even edit existing entries.   
 
 ## Tech Used
 
