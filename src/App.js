@@ -35,7 +35,7 @@ async componentDidMount() {
   }
 
 getRequest = () => {
-  fetch('http://localhost:3002')
+  fetch('http://kate-movies-backend.herokuapp.com')
   .then(response => (response.json()))
   .then(response => {
     this.setState({
@@ -52,7 +52,7 @@ handleChange = (event) => {
 }
 
 selectMovie = (event) => {
-  fetch(`http://localhost:3002/${event.target.id}`)
+  fetch(`http://kate-movies-backend.herokuapp.com/${event.target.id}`)
   .then(response => response.json())
   .then(response => {
      this.setState({
@@ -62,7 +62,7 @@ selectMovie = (event) => {
 }
 
 populateEditMovie = (event) => {
-  fetch(`http://localhost:3002/${event.target.id}`)
+  fetch(`http://kate-movies-backend.herokuapp.com/${event.target.id}`)
   .then(response => response.json())
   .then(response => {
      this.setState({
@@ -85,7 +85,7 @@ submitNewMovie = (event) => {
     rating: this.state.newMovie_rating,
     poster_url: this.state.newMovie_poster_URL,
   }
-  fetch("http://localhost:3002", {
+  fetch("http://kate-movies-backend.herokuapp.com", {
     method: "POST",
     headers: {
       "Content-Type": "application/json; charset=utf-8"
@@ -110,7 +110,7 @@ editMovie = (event) => {
     rating: Number(this.state.editMovie_rating),
     poster_url: this.state.editMovie_poster_URL,
   }
-  fetch(`http://localhost:3002/${changedMovie.id}`, {
+  fetch(`http://kate-movies-backend.herokuapp.com/${changedMovie.id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json; charset=utf-8"
@@ -126,7 +126,7 @@ editMovie = (event) => {
 }
 
 deleteMovie = (event) => {
-  fetch(`http://localhost:3002/${Number(event.target.id)}`, {
+  fetch(`http://kate-movies-backend.herokuapp.com/${Number(event.target.id)}`, {
     method: "DELETE",
   })
   let movies = this.state.movies_list.filter(movie => {
